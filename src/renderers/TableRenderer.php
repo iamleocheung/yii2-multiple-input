@@ -190,10 +190,10 @@ class TableRenderer extends BaseRenderer
         $options = [];
 
         if ($this->sortable) {
-            $options['id'] = $this->id.'sortable';
+            $options['id'] = $this->id.'sortableTbody';
         }
 
-        return Html::tag('tbody', implode("\n", $rows));
+        return Html::tag('tbody', implode("\n", $rows), $options);
     }
 
     /**

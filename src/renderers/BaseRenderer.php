@@ -437,7 +437,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         \kartik\sortable\SortableAsset::register($view);
 
         $options = Json::encode($this->getJsSortableOptions());
-        $js = "sortable('#{$this->id}-sortable', $options);";
+        $js = "sortable('#{$this->id}sortableTbody', $options);";
         $view->registerJs($js);
     }
 
