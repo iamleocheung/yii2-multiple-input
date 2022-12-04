@@ -107,7 +107,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
     public $columnClass;
 
     /**
-     * @var array|string position of add button. By default button is rendered in the row.
+     * @var array|string position of add button. By default button is rendered in the footer.
      */
     public $addButtonPosition = self::POS_FOOTER;
 
@@ -267,7 +267,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
     private function prepareButtons()
     {
         if ($this->addButtonPosition === null || $this->addButtonPosition === []) {
-            $this->addButtonPosition = $this->min === 0 ? self::POS_HEADER : self::POS_ROW;
+            $this->addButtonPosition = $this->min === 0 ? self::POS_FOOTER : self::POS_ROW;
         }
 
         if (!is_array($this->addButtonPosition)) {
