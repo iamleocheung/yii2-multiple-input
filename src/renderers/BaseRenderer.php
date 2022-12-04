@@ -444,12 +444,12 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         );
         $js = "sortable('#{$this->id}sortableTbody', multipleInput".$this->id."sortableOptions);";
         $view->registerJs($js);
-//         $sortstopJs = "sortable('#{$this->id}sortableTbody')[0].addEventListener('sortstop', function(e) {
-//     var wrapper = $(e.detail.origin.container).closest('.multiple-input').first();
-//     event = $.Event('afterDropRow');
-//     wrapper.trigger(event, [$(e.detail.item)]);
-// });";
-//         $view->registerJs($sortstopJs);
+        $sortstopJs = "sortable('#{$this->id}sortableTbody')[0].addEventListener('sortstop', function(e) {
+    var wrapper = $(e.detail.origin.container).closest('.multiple-input').first();
+    event = $.Event('afterDropRow');
+    wrapper.trigger(event, [$(e.detail.item)]);
+});";
+        $view->registerJs($sortstopJs);
     }
 
     /**
