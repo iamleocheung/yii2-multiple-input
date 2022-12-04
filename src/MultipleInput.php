@@ -78,7 +78,7 @@ class MultipleInput extends InputWidget
     /**
      * @var bool whether to allow the empty list
      */
-    public $allowEmptyList = false;
+    public $allowEmptyList = true;
 
     /**
      * @var bool whether to guess column title in case if there is no definition of columns
@@ -145,7 +145,7 @@ class MultipleInput extends InputWidget
      * @var bool whether to render inline error for all input. Default to `false`. Can be override in `columns`
      * @since 2.10
      */
-    public $enableError = false;
+    public $enableError = true;
 
     /**
      * @var bool whether to render clone button. Default to `false`.
@@ -187,16 +187,16 @@ class MultipleInput extends InputWidget
             'clone'         => 'glyphicon glyphicon-duplicate',
         ],
         self::ICONS_SOURCE_FONTAWESOME => [
-            'drag-handle'   => 'fa fa-bars',
-            'remove'        => 'fa fa-times',
-            'add'           => 'fa fa-plus',
-            'clone'         => 'fa fa-files-o',
+            'drag-handle'   => 'fa fa-fw fa-bars',
+            'remove'        => 'fa fa-fw fa-times',
+            'add'           => 'fa fa-fw fa-plus',
+            'clone'         => 'fa fa-fw fa-files-o',
         ],
     ];
     /**
      * @var string the name of default icon library
      */
-    public $iconSource = self::ICONS_SOURCE_GLYPHICONS;
+    public $iconSource = self::ICONS_SOURCE_FONTAWESOME;
 
     /**
      * @var string the CSS theme of the widget

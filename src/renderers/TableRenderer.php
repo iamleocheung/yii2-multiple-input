@@ -187,6 +187,12 @@ class TableRenderer extends BaseRenderer
             }
         }
 
+        $options = [];
+
+        if ($this->sortable) {
+            $options['id'] = $this->id.'sortable';
+        }
+
         return Html::tag('tbody', implode("\n", $rows));
     }
 
@@ -284,6 +290,18 @@ class TableRenderer extends BaseRenderer
             $options = ArrayHelper::merge($options, ['class' => $this->iconMap['drag-handle']]);
         }
 
+        $hasError = false;
+        $error = '';
+
+        if ($index !== null) {
+            $error = $column->getFirstError($index);
+            $hasError = !empty($error);
+        }
+
+        if ($column->enableError && $hasError) {
+            Html::addCssClass($options, 'is-invalid');
+        }
+
 
         $input = $column->renderInput($name, $options, [
             'id' => $id,
@@ -296,14 +314,6 @@ class TableRenderer extends BaseRenderer
 
         if ($column->isHiddenInput()) {
             return $input;
-        }
-
-        $hasError = false;
-        $error = '';
-
-        if ($index !== null) {
-            $error = $column->getFirstError($index);
-            $hasError = !empty($error);
         }
 
         if ($column->enableError) {

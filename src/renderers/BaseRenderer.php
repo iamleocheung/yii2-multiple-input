@@ -109,7 +109,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
     /**
      * @var array|string position of add button. By default button is rendered in the row.
      */
-    public $addButtonPosition = self::POS_ROW;
+    public $addButtonPosition = self::POS_FOOTER;
 
     /**
      * @var TabularInput|MultipleInput
@@ -275,7 +275,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         }
 
         if (!array_key_exists('class', $this->removeButtonOptions)) {
-            $this->removeButtonOptions['class'] = $this->isBootstrapTheme() ? 'btn btn-danger' : '';
+            $this->removeButtonOptions['class'] = $this->isBootstrapTheme() ? 'btn btn-danger btn-md' : '';
         }
 
         if (!array_key_exists('label', $this->removeButtonOptions)) {
@@ -283,7 +283,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         }
 
         if (!array_key_exists('class', $this->addButtonOptions)) {
-            $this->addButtonOptions['class'] = $this->isBootstrapTheme() ? 'btn btn-default' : '';
+            $this->addButtonOptions['class'] = $this->isBootstrapTheme() ? 'btn btn-success btn-md' : '';
         }
 
         if (!array_key_exists('label', $this->addButtonOptions)) {
@@ -291,7 +291,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         }
 
         if (!array_key_exists('class', $this->cloneButtonOptions)) {
-            $this->cloneButtonOptions['class'] = $this->isBootstrapTheme() ? 'btn btn-info' : '';
+            $this->cloneButtonOptions['class'] = $this->isBootstrapTheme() ? 'btn btn-default btn-md' : '';
         }
 
         if (!array_key_exists('label', $this->cloneButtonOptions)) {
@@ -433,38 +433,34 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
     private function registerJsSortable()
     {
         $view = $this->context->getView();
-        MultipleInputSortableAsset::register($view);
+        // MultipleInputSortableAsset::register($view);
+        \kartik\sortable\SortableAsset::register($view);
 
-        // todo override when ListRenderer will use div markup
         $options = Json::encode($this->getJsSortableOptions());
-        $js = "$('#{$this->id} .multiple-input-list').sorting($options);";
+        $js = "sortable('#{$this->id}-sortable', $options);";
         $view->registerJs($js);
     }
 
     /**
      * Returns an array of JQuery sortable plugin options.
      * You can override this method extend plugin behaviour.
-     * 
+     *
      * @return array
      */
     protected function getJsSortableOptions()
     {
         return [
-            'containerSelector' => 'table',
-            'itemPath'          => '> tbody',
-            'itemSelector'      => 'tr',
-            'placeholder'       => '<tr class="placeholder">',
             'handle'            => '.drag-handle',
-            'onDrop'            => new \yii\web\JsExpression("
-                function(item, container, _super, event) {
-                    _super(item, container, _super, event);
-
-                    var wrapper = item.closest('.multiple-input').first();
-                    event = $.Event('afterDropRow');
-                    wrapper.trigger(event, [item]);
-                }
-            ")
         ];
+        // 'onDrop'            => new \yii\web\JsExpression("
+        //     function(item, container, _super, event) {
+        //         _super(item, container, _super, event);
+        //
+        //         var wrapper = item.closest('.multiple-input').first();
+        //         event = $.Event('afterDropRow');
+        //         wrapper.trigger(event, [item]);
+        //     }
+        // ")
     }
 
     /**

@@ -100,12 +100,12 @@ abstract class BaseColumn extends BaseObject
     /**
      * @var bool whether to render inline error for the input. Default to `false`
      */
-    public $enableError = false;
+    public $enableError = true;
 
     /**
      * @var array the default options for the error tag
      */
-    public $errorOptions = ['class' => 'help-block help-block-error'];
+    public $errorOptions = ['class' => 'invalid-feedback'];
 
     /**
      * @var BaseRenderer the renderer instance

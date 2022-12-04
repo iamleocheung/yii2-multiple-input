@@ -25,13 +25,12 @@ class MultipleInputSortableAsset extends AssetBundle
         $this->sourcePath = __DIR__ . '/src/';
 
         $this->js = [
-            YII_DEBUG ? 'js/jquery-sortable.js' : 'js/jquery-sortable.min.js'
+            YII_DEBUG ? 'js/html5sortable.js' : 'js/html5sortable.min.js'
         ];
 
         $this->css = [
-            YII_DEBUG ? 'css/sorting.css' : 'css/sorting.min.css'
         ];
 
         parent::init();
     }
-} 
+}
