@@ -447,7 +447,7 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         $sortstopJs = "sortable('#{$this->id}sortableTbody')[0].addEventListener('sortstop', function(e) {
     var wrapper = $(e.detail.origin.container).closest('.multiple-input').first();
     event = $.Event('afterDropRow');
-    wrapper.trigger(event, [item]);
+    wrapper.trigger(event, [$(e.detail.item)]);
 });";
         $view->registerJs($sortstopJs);
     }
