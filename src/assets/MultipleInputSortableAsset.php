@@ -29,6 +29,7 @@ class MultipleInputSortableAsset extends AssetBundle
         ];
 
         $this->css = [
+            YII_DEBUG ? 'css/sorting.css' : 'css/sorting.min.css'
         ];
 
         parent::init();

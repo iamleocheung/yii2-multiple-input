@@ -1,6 +1,6 @@
 .drag-handle,
-.dragging,
-.dragging * {
+.sortable-dragging,
+.sortable-dragging * {
     cursor: move !important;
 }
 
@@ -20,7 +20,7 @@
     opacity: 1;
 }
 
-tr.placeholder {
+/* tr.sortable-placeholder {
     display: block;
     background: red;
     position: relative;
@@ -29,7 +29,7 @@ tr.placeholder {
     border: none;
 }
 
-tr.placeholder:before {
+tr.sortable-placeholder:before {
     content: "";
     position: absolute;
     width: 0;
@@ -39,7 +39,7 @@ tr.placeholder:before {
     margin-top: -5px;
     left: -5px;
     border-right: none;
-}
+} */
 
 table.multiple-input-list.table-renderer tr > td.list-cell__drag {
     width: 35px;
