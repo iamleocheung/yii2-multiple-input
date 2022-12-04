@@ -391,7 +391,7 @@
 
         $wrapper.data('multipleInput').currentIndex = newRowIndex;
 
-        let sortableTbody = $wrapper.children('.multiple-input-list__sortable-tbody').first();
+        let sortableTbody = $wrapper.children('table').children('.multiple-input-list__sortable-tbody').first();
         if (sortableTbody.length == 1) {
             sortable('#'+sortableTbody.attr('id'), 'reload');
         }
