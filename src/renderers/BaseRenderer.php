@@ -437,8 +437,21 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         // \kartik\sortable\SortableAsset::register($view);
 
         $options = Json::encode($this->getJsSortableOptions());
-        $js = "sortable('#{$this->id}sortableTbody', $options);";
+        $view->registerJs(
+            'var multipleInput'.$this->id.'sortableOptions = '.$options.';',
+            $view::POS_HEAD,
+            'multipleInput'.$this->id.'sortableOptions'
+        );
+        $js = "sortable('#{$this->id}sortableTbody', multipleInput".$this->id."sortableOptions);";
         $view->registerJs($js);
+        $sortstopJs = "sortable('#{$this->id}sortableTbody')[0].addEventListener('sortstop', function(e) {
+    function(item, container, _super, event) {
+        var wrapper = $(e.detail.origin.container).closest('.multiple-input').first();
+        event = $.Event('afterDropRow');
+        wrapper.trigger(event, [item]);
+    }
+});";
+        $view->registerJs($sortstopJs);
     }
 
     /**
@@ -452,15 +465,6 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
         return [
             'handle'            => '.drag-handle',
         ];
-        // 'onDrop'            => new \yii\web\JsExpression("
-        //     function(item, container, _super, event) {
-        //         _super(item, container, _super, event);
-        //
-        //         var wrapper = item.closest('.multiple-input').first();
-        //         event = $.Event('afterDropRow');
-        //         wrapper.trigger(event, [item]);
-        //     }
-        // ")
     }
 
     /**

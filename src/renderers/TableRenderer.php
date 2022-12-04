@@ -191,6 +191,8 @@ class TableRenderer extends BaseRenderer
 
         if ($this->sortable) {
             $options['id'] = $this->id.'sortableTbody';
+            $options['data-options'] = 'multipleInput'.$this->id.'sortableOptions';
+            Html::addCssClass($options, 'multiple-input-list__sortable-tbody');
         }
 
         return Html::tag('tbody', implode("\n", $rows), $options);
