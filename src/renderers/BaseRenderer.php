@@ -433,8 +433,8 @@ abstract class BaseRenderer extends BaseObject implements RendererInterface
     private function registerJsSortable()
     {
         $view = $this->context->getView();
-        // MultipleInputSortableAsset::register($view);
-        \kartik\sortable\SortableAsset::register($view);
+        MultipleInputSortableAsset::register($view);
+        // \kartik\sortable\SortableAsset::register($view);
 
         $options = Json::encode($this->getJsSortableOptions());
         $js = "sortable('#{$this->id}sortableTbody', $options);";
